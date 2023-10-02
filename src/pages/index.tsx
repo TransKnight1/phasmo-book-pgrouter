@@ -1,4 +1,4 @@
-import { GhostsButtons } from "@/components/ghost-component";
+import { GhostsButtons } from "@/components/GhostComponent";
 export default function Home() {
 	return (
 		<main>
