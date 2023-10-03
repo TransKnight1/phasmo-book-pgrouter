@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { ghosts } from "../components/ghostsandevidences";
+import { ghosts } from "./GhostsAndEvidences";
 
-export const GhostsButtons = () => {
+export const GhostsButtons = ({ selectedEvidence }) => {
+	// Function to check if a ghost has all the selected evidence
+	const hasSelectedEvidence = (ghost) =>
+		selectedEvidence.every((evidence) => ghost.evidences.includes(evidence));
+
 	const [buttonState, setButtonState] = useState(Array(ghosts.length).fill(0));
 
 	const toggleStyle = (index: number) => {
@@ -47,12 +51,15 @@ export const GhostsButtons = () => {
 	};
 
 	return (
-		<div className='grid grid-cols-3 m-4 gap-1 w-1/3'>
+		<div className='grid grid-cols-3 m-4 gap-1 w-5/12'>
 			{ghosts.map((ghost, index) => (
 				<button
-					className={getButtonClass(index)}
+					className={`${getButtonClass(index)} ${
+						!hasSelectedEvidence(ghost) ? "text-opacity-10" : ""
+					}`}
 					key={index}
-					onClick={() => toggleStyle(index)}>
+					onClick={() => toggleStyle(index)}
+					disabled={!hasSelectedEvidence(ghost)}>
 					{ghost.name}
 				</button>
 			))}

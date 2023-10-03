@@ -1,21 +1,39 @@
-// import React from 'react';
-// import { EvidenceType } from './ghostsandevidences';
+import React, { useState } from "react";
+import { ghosts } from "./GhostsAndEvidences";
 
-// const GhostCheckBoxes = () => {
-//   const allEvidenceTypes = Object.values(EvidenceType);
+export const GhostCheckboxes = () => {
+	const [selectedEvidence, setSelectedEvidence] = useState([]);
 
-//   return (
-//     <div className="w-1/3 h-1/3 bg-amber-700 text-center">
-//       <div className='grid grid-cols-3 gap-4 font-extralight'>
-//         {allEvidenceTypes.map((evidence, index) => (
-//           <li className='list-none' key={index}>
-//             <input type="checkbox"></input>
-//             <label>{evidence}</label>
-//           </li>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
+	const toggleEvidence = (evidence) => {
+		if (selectedEvidence.includes(evidence)) {
+			setSelectedEvidence(selectedEvidence.filter((item) => item !== evidence));
+		} else {
+			setSelectedEvidence([...selectedEvidence, evidence]);
+		}
+	};
 
-// export default GhostCheckBoxes;
+	// Collect all unique evidence types from the ghosts data
+	const allEvidenceTypes = Array.from(
+		new Set(ghosts.flatMap((ghost) => ghost.evidences))
+	);
+
+	return (
+		<div className='grid grid-cols-2 m-4 gap-1 w-5/12 font-bold border-y-2 my-4'>
+			{allEvidenceTypes.map((evidence, index) => (
+				<div
+					key={index}
+					className='text-white text-base flex items-center justify-start'>
+					<input
+						type='checkbox'
+						id={`checkbox-${index}`}
+						className={`w-32 h-6 border-black ${
+							selectedEvidence.includes(evidence) ? "bg-blue-600" : ""
+						}`}
+						onClick={() => toggleEvidence(evidence)}
+					/>
+					<label htmlFor={`checkbox-${index}`}>{evidence}</label>
+				</div>
+			))}
+		</div>
+	);
+};
