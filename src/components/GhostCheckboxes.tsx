@@ -18,22 +18,26 @@ export const GhostCheckboxes = () => {
 	);
 
 	return (
-		<div className='grid grid-cols-2 m-4 gap-1 w-5/12 font-bold border-y-2 my-4'>
-			{allEvidenceTypes.map((evidence, index) => (
-				<div
-					key={index}
-					className='text-white text-base flex items-center justify-start'>
-					<input
-						type='checkbox'
-						id={`checkbox-${index}`}
-						className={`w-32 h-6 border-black ${
-							selectedEvidence.includes(evidence) ? "bg-blue-600" : ""
-						}`}
-						onClick={() => toggleEvidence(evidence)}
-					/>
-					<label htmlFor={`checkbox-${index}`}>{evidence}</label>
-				</div>
-			))}
+		<div className='border-y-2 flex justify-center'>
+			<div className='grid grid-cols-2 gap-4   font-bold my-8'>
+				{allEvidenceTypes.map((evidence, index) => (
+					<div
+						key={index}
+						className='text-white text-base flex items-center justify-start'>
+						<input
+							type='checkbox'
+							id={`checkbox-${index}`}
+							className={`w-32 h-6 border-black ${
+								selectedEvidence.includes(evidence) ? "bg-blue-600" : ""
+							}`}
+							onClick={() => toggleEvidence(evidence)}
+						/>
+						<label className='-ml-10' htmlFor={`checkbox-${index}`}>
+							{evidence}
+						</label>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 };

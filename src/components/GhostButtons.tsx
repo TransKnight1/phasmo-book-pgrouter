@@ -51,18 +51,22 @@ export const GhostsButtons = ({ selectedEvidence }) => {
 	};
 
 	return (
-		<div className='grid grid-cols-3 m-4 gap-1 w-5/12'>
-			{ghosts.map((ghost, index) => (
-				<button
-					className={`${getButtonClass(index)} ${
-						!hasSelectedEvidence(ghost) ? "text-opacity-10" : ""
-					}`}
-					key={index}
-					onClick={() => toggleStyle(index)}
-					disabled={!hasSelectedEvidence(ghost)}>
-					{ghost.name}
-				</button>
-			))}
+		<div className='flex justify-center'>
+			<div className='grid grid-cols-3 m-4 gap-1 w-5/12'>
+				{ghosts.map((ghost, index) => (
+					<button
+						className={`${
+							hasSelectedEvidence(ghost)
+								? getButtonClass(index)
+								: "text-opacity-10"
+						}`}
+						key={index}
+						onClick={() => toggleStyle(index)}
+						disabled={!hasSelectedEvidence(ghost)}>
+						{ghost.name}
+					</button>
+				))}
+			</div>
 		</div>
 	);
 };
