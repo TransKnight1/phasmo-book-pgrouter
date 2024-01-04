@@ -1,20 +1,15 @@
 import { useState } from "react";
-import { GhostsButtons } from "@/components/GhostButtons";
-import { GhostCheckboxes } from "@/components/GhostCheckboxes";
-export default function Home() {
-	const [selectedEvidence, setSelectedEvidence] = useState([]);
+import { GhostsAndEvidences } from "../components/ghostsandevidences";
 
-	return (
-		<main>
-			<div>
-				<GhostCheckboxes
-					selectedEvidence={selectedEvidence}
-					setSelectedEvidence={setSelectedEvidence}
-				/>
-			</div>
-			<div>
-				<GhostsButtons selectedEvidence={selectedEvidence} />
-			</div>
-		</main>
-	);
+export default function Home() {
+  return (
+    <>
+      <div className="flex text-white font-bold justify-center">
+        Olá fantasminha
+      </div>
+      <div>
+        <GhostsAndEvidences />
+      </div>
+    </>
+  );
 }
